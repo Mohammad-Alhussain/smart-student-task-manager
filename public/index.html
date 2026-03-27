@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Dashboard for Smart Student Task Manager. Track your academic workloads effectively.">
+  <title>Smart Student Task Manager | Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">Smart Student Task Manager</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="add-task.html">Add Task</a></li>
+        <li><a href="tasks.html">Manage Tasks</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Welcome back, Student!</h1>
+      <p>Your personal academic dashboard. Keep track of your assignments, exams, and projects efficiently.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card clickable-card">
+        <h2 class="card-title">Total Tasks</h2>
+        <div class="card-value" id="stat-total">0</div>
+      </div>
+      <div class="card clickable-card">
+        <h2 class="card-title">Completed</h2>
+        <div class="card-value" style="color: var(--success);" id="stat-completed">0</div>
+      </div>
+      <div class="card clickable-card">
+        <h2 class="card-title">Pending</h2>
+        <div class="card-value" style="color: var(--warning);" id="stat-pending">0</div>
+      </div>
+      <div class="card clickable-card">
+        <h2 class="card-title">High Priority (Pending)</h2>
+        <div class="card-value" style="color: var(--danger);" id="stat-high">0</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

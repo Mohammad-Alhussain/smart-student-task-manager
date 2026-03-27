@@ -1,0 +1,1 @@
+{"line285":"      card.className = \\`task-card \\${isCompleted ? 'completed' : ''} \\${isTaskOverdue ? 'overdue' : ''}\\`;","line287":"      card.innerHTML = \\`"}

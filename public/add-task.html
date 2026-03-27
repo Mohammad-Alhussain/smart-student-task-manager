@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Add or edit a task in your Smart Student Task Manager app.">
+  <title>Smart Student Task Manager | Add Task</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">Smart Student Task Manager</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="add-task.html" class="active">Add Task</a></li>
+        <li><a href="tasks.html">Manage Tasks</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1 id="page-title">Add New Task</h1>
+      <p>Create a new task to stay on top of your coursework.</p>
+    </div>
+
+    <div class="form-container">
+      <form id="add-task-form">
+        <div class="form-group">
+          <label for="title">Task Title *</label>
+          <input type="text" id="title" class="form-control" required placeholder="e.g., Math Homework Ch. 5">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description (Optional)</label>
+          <textarea id="description" class="form-control" placeholder="Add any extra details..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category *</label>
+          <select id="category" class="form-control" required>
+            <option value="Homework">Homework</option>
+            <option value="Exam">Exam</option>
+            <option value="Project">Project</option>
+            <option value="Personal">Personal</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="priority">Priority *</label>
+          <select id="priority" class="form-control" required>
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status *</label>
+          <select id="status" class="form-control" required>
+            <option value="Pending" selected>Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="dueDate">Due Date *</label>
+          <input type="date" id="dueDate" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;">Save Task</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

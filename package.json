@@ -1,0 +1,14 @@
+{
+  "name": "smart-student-task-manager",
+  "version": "1.0.0",
+  "description": "Full-stack student task manager",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node init-db.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "sqlite3": "^5.1.0"
+  }
+}
