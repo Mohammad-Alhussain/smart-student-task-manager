@@ -1,17 +1,6 @@
-/**
- * Smart Student Task Manager
- * Handles data via API calls strictly (Full-Stack Mode)
- */
 
 const API_BASE_URL = '/api/tasks';
 
-// ----------------------------------------------------
-// Data Management (Fetch API to Express server)
-// ----------------------------------------------------
-
-/**
- * Retrieves all tasks asynchronously via GET API
- */
 async function getTasks() {
   try {
     const response = await fetch(API_BASE_URL);
@@ -24,9 +13,7 @@ async function getTasks() {
   }
 }
 
-/**
- * Adds a new task asynchronously via POST API
- */
+
 async function addTask(taskData) {
   try {
     const response = await fetch(API_BASE_URL, {
@@ -43,9 +30,7 @@ async function addTask(taskData) {
   }
 }
 
-/**
- * Updates a specific task asynchronously via PUT API
- */
+
 async function updateTask(id, updatedFields) {
   try {
     const response = await fetch(`${API_BASE_URL}/${id}`, {
@@ -65,9 +50,6 @@ async function updateTask(id, updatedFields) {
   }
 }
 
-/**
- * Deletes a task by ID asynchronously via DELETE API
- */
 async function deleteTask(id) {
   try {
     const response = await fetch(`${API_BASE_URL}/${id}`, {
@@ -85,9 +67,6 @@ async function deleteTask(id) {
   }
 }
 
-// ----------------------------------------------------
-// UI Logic - Helper Functions
-// ----------------------------------------------------
 
 function isOverdue(dueDateStr, status) {
   if (!dueDateStr || status === 'Completed') return false;
@@ -101,9 +80,6 @@ function isOverdue(dueDateStr, status) {
   return dueDate < today;
 }
 
-// ----------------------------------------------------
-// Page Specific Initializers
-// ----------------------------------------------------
 
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -120,9 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 });
 
-/**
- * Initialize Dashboard logic (index.html) [ASYNC REFACTOR]
- */
+
 async function initDashboard() {
   const tasks = await getTasks();
 
@@ -142,9 +116,7 @@ async function initDashboard() {
   if (highPriorityEl) highPriorityEl.textContent = highPriority;
 }
 
-/**
- * Initialize Add / Edit Task page (add-task.html) [ASYNC REFACTOR]
- */
+
 async function initAddTask() {
   const form = document.getElementById('add-task-form');
   const pageTitle = document.getElementById('page-title');
@@ -159,7 +131,6 @@ async function initAddTask() {
     pageTitle.textContent = 'Edit Task';
     submitBtn.textContent = 'Update Task';
 
-    // Asynchronously pre-fetch data for editing
     try {
       const fetchRes = await fetch(`${API_BASE_URL}/${editId}`);
       if (fetchRes.ok) {
@@ -188,13 +159,10 @@ async function initAddTask() {
     const statusEl = document.getElementById('status');
     const dueDateEl = document.getElementById('dueDate');
 
-    // Prevent submission validation missing elements explicitly
     if (!titleEl.value.trim() || !categoryEl.value || !priorityEl.value || !statusEl.value || !dueDateEl.value) {
       alert("Validation error: You must provide a valid task Title and set required dropdown bounds.");
       return;
     }
-
-    // UX improvements
     submitBtn.disabled = true;
     submitBtn.textContent = 'Saving directly to database...';
 
@@ -223,9 +191,7 @@ async function initAddTask() {
   });
 }
 
-/**
- * Initialize Manage Tasks page (tasks.html) [ASYNC REFACTOR]
- */
+
 async function initManageTasks() {
   const tasksContainer = document.getElementById('tasks-container');
   const searchInput = document.getElementById('search-input');
@@ -234,7 +200,6 @@ async function initManageTasks() {
 
   if (!tasksContainer) return;
 
-  // Local state to prevent overloading SQLite with rapid GET calls over inputs
   let allTasksCache = [];
 
   async function initialRender() {
@@ -320,7 +285,7 @@ async function initManageTasks() {
   window.markComplete = async function (id) {
     try {
       await updateTask(id, { status: 'Completed' });
-      await initialRender(); // Synchronize UI with updated Database state
+      await initialRender();
     } catch (err) {
       console.error(err);
     }
@@ -334,7 +299,7 @@ async function initManageTasks() {
     if (confirm('Are you strictly positive you want to delete this SQL entry forever?')) {
       try {
         await deleteTask(id);
-        await initialRender(); // Refresh array from database
+        await initialRender();
       } catch (err) {
         console.log(err);
       }
